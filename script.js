@@ -34,8 +34,8 @@ function createSmallStars() {
   starsContainer.appendChild(small);
 }
 
-for (let i = 0; i < 80;  i++) createStars();
-for (let i = 0; i < 150; i++) createSmallStars();
+for (let i = 0; i < 50;  i++) createStars();
+for (let i = 0; i < 80; i++) createSmallStars();
 
 
 // =============================================
@@ -60,8 +60,8 @@ if (isDay) {
   sun.style.display = 'block';
 
   // Sun rays — 12 spokes radiating from sun center
-  const sunCenterX = window.innerWidth - 70 - 45;   // right:70px + half of 90px
-  const sunCenterY = 50 + 45;                         // top:50px + half of 90px
+  const sunCenterX = window.innerWidth - 15 - 45;   // right:15px + half of 90px
+  const sunCenterY = 10 + 45;                         // top:10px + half of 90px
 
   for (let r = 0; r < 12; r++) {
     const ray    = document.createElement('div');

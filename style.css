@@ -78,7 +78,7 @@ body.daytime #ending-signed   { color: #1565c0; }
 
 /*----- INTRO -----*/
 #her-name {
-  font-size: 5rem;
+  font-size: clamp(2.5rem, 10vw, 5rem);
   color: #ff9ecd;
   text-shadow: 0 0 20px #ff9ecd, 0 0 40px #ff69b4;
   letter-spacing: 8px;
@@ -196,7 +196,7 @@ body.daytime #ending-signed   { color: #1565c0; }
 
 /*----- CONFESSION -----*/
 #confession-text {
-  font-size: 2.6rem;
+  font-size: clamp(1.5rem, 6vw, 2.6rem);
   color: #ff9ecd;
   text-shadow: 0 0 20px #ff9ecd, 0 0 60px #ff69b4;
   margin-bottom: 30px;
@@ -224,7 +224,7 @@ body.daytime #ending-signed   { color: #1565c0; }
 }
 
 #ending-text {
-  font-size: 2.5rem;
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
   color: #ff9ecd;
   text-shadow: 0 0 20px #ff9ecd, 0 0 60px #ff69b4;
   font-style: italic;
@@ -249,8 +249,8 @@ body.daytime #ending-signed   { color: #1565c0; }
 /*----- MOON -----*/
 #moon {
   position: fixed;
-  top: 60px;
-  right: 80px;
+  top: 15px;
+  right: 15px;
   width: 80px;
   height: 80px;
   background-color: transparent;
@@ -315,8 +315,8 @@ body.daytime #ending-signed   { color: #1565c0; }
 /*----- SUN -----*/
 #sun {
   position: fixed;
-  top: 50px;
-  right: 70px;
+  top: 15px;
+  right: 15px;
   width: 90px;
   height: 90px;
   border-radius: 50%;
@@ -416,9 +416,9 @@ body.daytime #ending-signed   { color: #1565c0; }
   background: rgba(255, 158, 205, 0.15);
   border: 1px solid rgba(255, 158, 205, 0.4);
   color: #ff9ecd;
-  font-size: 1.5rem;
-  width: 48px;
-  height: 48px;
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  width: clamp(36px, 8vw, 48px);
+  height: clamp(36px, 8vw, 48px);
   border-radius: 50%;
   cursor: pointer;
   z-index: 10;
@@ -454,4 +454,168 @@ body.daytime .nav-btn:hover {
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+
+
+/*-------- HER PHOTO --------*/
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+#her-photo-container {
+  margin-top: 30px;
+  width: 220px;
+  height: 300px;
+  border-radius: 120px;
+  padding: 4px;
+  background: conic-gradient(from var(--angle), #ff9ecd, #ffffff, #a8d8ff, #ffffff, #ff69b4, #ffffff, #ff9ecd);
+  animation: borderSpin 4s linear infinite;
+}
+
+#her-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 118px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+
+@keyframes borderSpin {
+  0% {--angle:0deg;}
+  100% {--angle: 360deg;}
+}
+
+body.daytime #her-photo-container {
+  background: conic-gradient(from var(--angle), #ff9ecd, #ffd700, #ff4081, #ffd700, #ff9ecd);
+}
+
+
+/*---CONFESSION SLIDE---*/
+#confession-container {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+/* Your photo — bottom left */
+#cleophas-photo {
+  position: absolute;
+  bottom: 0;
+  left: clamp(10px, 4vw, 40px);
+  width: clamp(80px, 16vw, 130px);
+  height: clamp(120px, 26vw, 200px);
+  border-radius: 16px;
+  object-fit: cover;
+  object-position: center top;
+  border: 3px solid rgba(100, 180, 255, 0.8);
+  box-shadow: 0 0 15px rgba(100, 180, 255, 0.5),
+              0 0 35px rgba(100, 180, 255, 0.25);
+  z-index: 2;
+}
+
+/* Heart bubbles rising diagonally */
+#thought-bubbles {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heart-bubble {
+  position: absolute;
+  color: #ff9ecd;
+  animation: bubbleRise 3s infinite ease-in-out;
+  text-shadow: 0 0 8px rgba(255, 158, 205, 0.8);
+}
+
+.hb-1 {
+  font-size: clamp(20px, 4vw, 28px);
+  bottom: clamp(160px, 30vw, 230px);
+  left: clamp(90px, 18vw, 150px);
+  color: #a8d8ff;
+  animation-delay: 0s;
+}
+
+.hb-2 {
+  font-size: clamp(26px, 5vw, 36px);
+  bottom: clamp(210px, 40vw, 310px);
+  left: clamp(130px, 26vw, 210px);
+  color: #ff9ecd;
+  animation-delay: 0.6s;
+}
+
+.hb-3 {
+  font-size: clamp(32px, 6vw, 44px);
+  bottom: clamp(260px, 50vw, 390px);
+  left: clamp(170px, 34vw, 270px);
+  color: #a8d8ff;
+  animation-delay: 1.2s;
+}
+
+@keyframes bubbleRise {
+  0%   { transform: translateY(0px) scale(1);    opacity: 0.5; }
+  50%  { transform: translateY(-12px) scale(1.1); opacity: 1; }
+  100% { transform: translateY(0px) scale(1);    opacity: 0.5; }
+}
+
+/* Her photo — top right */
+#shayma-heart-side {
+  position: absolute;
+  top: 0;
+  right: clamp(10px, 4vw, 40px);
+}
+
+#shayma-heart-frame {
+  width: clamp(160px, 34vw, 240px);
+  height: clamp(150px, 32vw, 228px);
+  animation: heartGlow 3s infinite ease-in-out;
+}
+
+#heart-svg {
+  width: 100%;
+  height: 100%;
+}
+
+#heart-border-path {
+  animation: heartBorderSpin 3s linear infinite;
+}
+
+@keyframes heartBorderSpin {
+  0%   { stroke: #ff9ecd; }
+  33%  { stroke: #ffffff; }
+  66%  { stroke: #a8d8ff; }
+  100% { stroke: #ff9ecd; }
+}
+
+@keyframes heartGlow {
+  0%   { filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6)) drop-shadow(0 0 20px rgba(168, 216, 255, 0.4)); }
+  50%  { filter: drop-shadow(0 0 25px rgba(255, 105, 180, 0.9)) drop-shadow(0 0 50px rgba(168, 216, 255, 0.7)); }
+  100% { filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6)) drop-shadow(0 0 20px rgba(168, 216, 255, 0.4)); }
+}
+
+#shayma-heart-photo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  clip-path: path('M 100 170 C 40 130 0 90 0 55 A 50 50 0 0 1 100 30 A 50 50 0 0 1 200 55 C 200 90 160 130 100 170 Z');
+  z-index: 1;
+}
+
+@keyframes heartGlow {
+  0%   { filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6)) drop-shadow(0 0 20px rgba(168, 216, 255, 0.4)); }
+  50%  { filter: drop-shadow(0 0 25px rgba(255, 105, 180, 0.9)) drop-shadow(0 0 50px rgba(168, 216, 255, 0.7)); }
+  100% { filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6)) drop-shadow(0 0 20px rgba(168, 216, 255, 0.4)); }
 }
