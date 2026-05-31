@@ -314,30 +314,31 @@ Object.keys(sectionSounds).forEach(section => {
 let currentSection = null;
 
 function fadeOut(audio, callback) {
-  const fade = setInterval(() => {
+  clearInterval(audio._fadeInterval);
+  audio._fadeInterval = setInterval(() => {
     if (audio.volume > 0.05) {
       audio.volume -= 0.05;
     } else {
       audio.volume = 0;
-      audio.pause(); // pause — NOT reset — so it resumes from same spot
-      clearInterval(fade);
+      audio.pause();
+      clearInterval(audio._fadeInterval);
       if (callback) callback();
     }
   }, 80);
 }
 
 function fadeIn(audio) {
+  clearInterval(audio._fadeInterval);
   audio.volume = 0;
   audio.play().catch(() => {});
-  const fade = setInterval(() => {
+  audio._fadeInterval = setInterval(() => {
     if (audio.volume < 0.5) {
       audio.volume = Math.min(audio.volume + 0.05, 0.5);
     } else {
-      clearInterval(fade);
+      clearInterval(audio._fadeInterval);
     }
   }, 80);
 }
-
 function playSectionSound(sectionId) {
   const nextAudio = audioPlayers[sectionId];
   if (!nextAudio) return;
