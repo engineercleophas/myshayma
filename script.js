@@ -34,8 +34,8 @@ function createSmallStars() {
   starsContainer.appendChild(small);
 }
 
-for (let i = 0; i < 50;  i++) createStars();
-for (let i = 0; i < 80; i++) createSmallStars();
+for (let i = 0; i < 20;  i++) createStars();
+for (let i = 0; i < 50; i++) createSmallStars();
 
 
 // =============================================
