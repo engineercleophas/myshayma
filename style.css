@@ -212,7 +212,10 @@ body.daytime #ending-signed   { color: #1565c0; }
 
 
 /*----- ENDING -----*/
-#ending { position: relative; }
+#ending {
+  position: relative;
+  justify-content: center;
+}
 
 #shooting-star-canvas {
   position: absolute;
@@ -221,6 +224,24 @@ body.daytime #ending-signed   { color: #1565c0; }
   width: 100%;
   height: 100%;
   pointer-events: none;
+  z-index: 0;
+}
+
+#ending-heart-frame {
+  width: clamp(200px, 50vw, 320px);
+  height: clamp(190px, 48vw, 305px);
+  position: relative;
+  z-index: 2;
+  animation: heartGlow 3s infinite ease-in-out;
+}
+
+#ending-heart-svg {
+  width: 100%;
+  height: 100%;
+}
+
+#ending-heart-border {
+  animation: heartBorderSpin 3s linear infinite;
 }
 
 #ending-text {
@@ -228,7 +249,8 @@ body.daytime #ending-signed   { color: #1565c0; }
   color: #ff9ecd;
   text-shadow: 0 0 20px #ff9ecd, 0 0 60px #ff69b4;
   font-style: italic;
-  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
   opacity: 0;
   animation: fadeIn 2s ease forwards 0.8s;
   position: relative;
@@ -618,4 +640,73 @@ body.daytime #her-photo-container {
   0%   { filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6)) drop-shadow(0 0 20px rgba(168, 216, 255, 0.4)); }
   50%  { filter: drop-shadow(0 0 25px rgba(255, 105, 180, 0.9)) drop-shadow(0 0 50px rgba(168, 216, 255, 0.7)); }
   100% { filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6)) drop-shadow(0 0 20px rgba(168, 216, 255, 0.4)); }
+}
+
+
+/*----- ENDING CHOICES -----*/
+#ending-choices {
+  display: flex;
+  gap: 20px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.choice-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 158, 205, 0.4);
+  background: rgba(255, 158, 205, 0.1);
+  color: #ff9ecd;
+  font-size: clamp(0.8rem, 3vw, 1rem);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+.choice-box:hover {
+  background: rgba(255, 158, 205, 0.25);
+  transform: scale(1.05);
+}
+
+.choice-box input[type="checkbox"] {
+  accent-color: #ff9ecd;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.choice-box.checked {
+  background: rgba(255, 158, 205, 0.3);
+  border-color: rgba(255, 158, 205, 0.8);
+}
+
+#convince-text {
+  font-size: clamp(0.85rem, 3vw, 1.1rem);
+  color: #d4b8ff;
+  font-style: italic;
+  max-width: 400px;
+  text-align: center;
+  line-height: 1.8;
+  margin-top: 16px;
+  animation: fadeIn 1s ease forwards;
+}
+
+body.daytime #convince-text { color: #4a148c; }
+body.daytime .choice-box {
+  color: #c2185b;
+  border-color: rgba(194, 24, 91, 0.4);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+#ending-heart-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 1.5s ease forwards;
 }

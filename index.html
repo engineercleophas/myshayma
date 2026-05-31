@@ -95,8 +95,57 @@
     <!-- Section 5: Ending -->
     <section id="ending" class="slide">
       <canvas id="shooting-star-canvas"></canvas>
-      <p id="ending-text">Can I be your star? ⭐</p>
-      <p id="ending-signed">-- Cleophas ✦</p>
+
+
+      <p id="ending-text"></p>
+
+      <div id="ending-choices" style="display:none;">
+        <label class="choice-box" id="choice-yes">
+          <input type="checkbox" id="yes-check"/>
+          <span>Yes! 🤗⭐</span>
+        </label>
+        <label class="choice-box" id="choice-think">
+          <input type="checkbox" id="think-check"/>
+          <span>Lemme think about it... 🤔</span>
+        </label>
+      </div>
+
+      <p id="convince-text" style="display:none;"></p>
+
+      <div id="ending-heart-wrapper" style="display:none;">
+        <div id="ending-heart-frame">
+          <svg viewBox="0 -10 200 200" xmlns="http://www.w3.org/2000/svg" id="ending-heart-svg">
+            <defs>
+              <clipPath id="endingHeartClip">
+                <path d="M 100 175 C 60 150 5 115 5 70 C 5 35 28 8 58 8 C 75 8 90 16 100 28 C 110 16 125 8 142 8 C 172 8 195 35 195 70 C 195 115 140 150 100 175 Z"/>
+              </clipPath>
+              <linearGradient id="endingHeartBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#ff9ecd"/>
+                <stop offset="50%" style="stop-color:#a8d8ff"/>
+                <stop offset="100%" style="stop-color:#ff69b4"/>
+              </linearGradient>
+            </defs>
+
+            <image href="ending-cleophas.jpg"
+              x="85" y="-40"
+              width="140" height="210"
+              preserveAspectRatio="xMidYMid slice"
+              clip-path="url(#endingHeartClip)"
+              style="opacity: 0.92;"/>
+
+            <image href="ending-shayma.jpg"
+              x="-15" y="-10"
+              width="120" height="180"
+              preserveAspectRatio="xMidYMid slice"
+              clip-path="url(#endingHeartClip)"
+              style="transform-origin: 80px 90px; transform: rotate(4deg);"/>
+
+            <path d="M 100 175 C 60 150 5 115 5 70 C 5 35 28 8 58 8 C 75 8 90 16 100 28 C 110 16 125 8 142 8 C 172 8 195 35 195 70 C 195 115 140 150 100 175 Z"
+              fill="none" stroke="url(#endingHeartBorder)" stroke-width="6" id="ending-heart-border"/>
+          </svg>
+        </div>
+        <p id="ending-signed">-- Cleophas ✦</p>
+      </div>
     </section>
 
     <script src="script.js"></script>

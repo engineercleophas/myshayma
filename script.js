@@ -339,20 +339,114 @@ function fadeIn(audio) {
     }
   }, 80);
 }
+
 function playSectionSound(sectionId) {
   const nextAudio = audioPlayers[sectionId];
   if (!nextAudio) return;
 
-  if (currentSection && currentSection !== sectionId) {
-    const prevAudio = audioPlayers[currentSection];
-    // Fade out previous, then fade in new one
-    fadeOut(prevAudio, () => fadeIn(nextAudio));
-  } else {
-    fadeIn(nextAudio);
-  }
+  // Stop ALL players instantly before fading in the new one
+  Object.keys(audioPlayers).forEach(key => {
+    const audio = audioPlayers[key];
+    clearInterval(audio._fadeInterval);
+    if (key !== sectionId) {
+      audio.volume = 0;
+      audio.pause();
+    }
+  });
 
   currentSection = sectionId;
+  fadeIn(nextAudio);
 }
+
+
+// =============================================
+// 8. ENDING INTERACTION
+// =============================================
+
+const endingText     = document.getElementById('ending-text');
+const endingChoices  = document.getElementById('ending-choices');
+const convinceText   = document.getElementById('convince-text');
+const endingWrapper  = document.getElementById('ending-heart-wrapper');
+const yesCheck       = document.getElementById('yes-check');
+const thinkCheck     = document.getElementById('think-check');
+
+const endingMessage  = "Can I be your star? ⭐";
+let endingCharIndex  = 0;
+let endingTyping     = false;
+
+const convinceMessages = [
+  "Hey dee, it's me asking this. Please, consider my request. I do love you and I am sure you know that, so if you would just say yes, I promise to make every single day feel as special as this one.",
+  "Hey dee, it's me asking this. Please, consider my request. I do love you and I am sure you know that, so if you would give me a chance, I will spend every day proving you made the right choice.",
+  "Hey dee, it's me asking this. Please, consider my request. I do love you and I am sure you know that, so if you would let me, I want to be the reason you smile every day.",
+];
+
+function getConvinceMessage() {
+  const rand = Math.random();
+  if (rand < 0.6) return convinceMessages[0];
+  if (rand < 0.8) return convinceMessages[1];
+  return convinceMessages[2];
+}
+
+function typeEndingText() {
+  if (endingCharIndex < endingMessage.length) {
+    endingText.textContent += endingMessage[endingCharIndex];
+    endingCharIndex++;
+    setTimeout(typeEndingText, 120);
+  } else {
+    // Typing done — show checkboxes
+    endingChoices.style.display = 'flex';
+  }
+}
+
+function startEndingSequence() {
+  // Reset everything
+  endingCharIndex = 0;
+  endingText.textContent = '';
+  endingChoices.style.display = 'none';
+  convinceText.style.display = 'none';
+  endingWrapper.style.display = 'none';
+  yesCheck.checked = false;
+  thinkCheck.checked = false;
+
+  document.getElementById('choice-yes').classList.remove('checked');
+  document.getElementById('choice-think').classList.remove('checked');
+
+  setTimeout(typeEndingText, 600);
+}
+
+yesCheck.addEventListener('change', () => {
+  if (yesCheck.checked) {
+    // Uncheck the other
+    thinkCheck.checked = false;
+    document.getElementById('choice-think').classList.remove('checked');
+    document.getElementById('choice-yes').classList.add('checked');
+
+    // Hide convince message, show heart
+    convinceText.style.display = 'none';
+    endingWrapper.style.display = 'flex';
+  } else {
+    document.getElementById('choice-yes').classList.remove('checked');
+    endingWrapper.style.display = 'none';
+  }
+});
+
+thinkCheck.addEventListener('change', () => {
+  if (thinkCheck.checked) {
+    // Uncheck the other
+    yesCheck.checked = false;
+    document.getElementById('choice-yes').classList.remove('checked');
+    document.getElementById('choice-think').classList.add('checked');
+
+    // Hide heart, show convince message
+    endingWrapper.style.display = 'none';
+    convinceText.style.display = 'block';
+    convinceText.textContent = getConvinceMessage();
+  } else {
+    document.getElementById('choice-think').classList.remove('checked');
+    convinceText.style.display = 'none';
+  }
+});
+
 
 // =============================================
 // 6. SLIDE NAVIGATION  (always last)
@@ -381,6 +475,7 @@ function goToSlide(n) {
   // Ending: restart shooting stars each time she arrives
   if (slides[currentSlide].id === 'ending') {
     startShootingStars();
+    startEndingSequence();
   }
 
 
