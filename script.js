@@ -3,6 +3,27 @@
   Made with love by Cleophas
 ====================================================*/
 
+
+// =============================================
+// 0. LOADING SCREEN
+// =============================================
+
+const loadingScreen = document.getElementById('loading-screen');
+const loadingBar    = document.getElementById('loading-bar');
+
+// Start filling the bar shortly after it appears
+setTimeout(() => { loadingBar.style.width = '100%'; }, 2200);
+
+// Fade out loading screen after bar fills
+setTimeout(() => {
+  loadingScreen.classList.add('fade-out');
+  setTimeout(() => {
+    loadingScreen.style.display = 'none';
+    // Trigger intro voice after loading screen disappears
+    playSectionSound('intro');
+  }, 1000);
+}, 7000);
+
 console.log('script is running');
 
 
@@ -34,8 +55,8 @@ function createSmallStars() {
   starsContainer.appendChild(small);
 }
 
-for (let i = 0; i < 20;  i++) createStars();
-for (let i = 0; i < 50; i++) createSmallStars();
+for (let i = 0; i < 40;  i++) createStars();
+for (let i = 0; i < 70; i++) createSmallStars();
 
 
 // =============================================
@@ -126,7 +147,7 @@ const reasons = [
 const cardsContainer = document.getElementById('cards-container');
 
 // ⚠️ Change this to the date you send her the link
-const startDate   = new Date('2026-05-25');
+const startDate   = new Date('2026-06-01');
 const today       = new Date();
 const msPerDay    = 1000 * 60 * 60 * 24;
 const daysPassed  = Math.floor((today - startDate) / msPerDay);
@@ -288,6 +309,343 @@ function startShootingStars() {
 
 
 // =============================================
+// VOICE SYNC
+// =============================================
+
+const introSync = [
+  { t: 1.141, word: "Shayma," },
+  { t: 2.826, word: "I" },
+  { t: 3.599, word: "have" },
+  { t: 3.901, word: "been" },
+  { t: 4.359, word: "thinking" },
+  { t: 4.804, word: "about" },
+  { t: 5.332, word: "this" },
+  { t: 5.689, word: "for" },
+  { t: 6.096, word: "a" },
+  { t: 6.414, word: "while" },
+  { t: 6.774, word: "now," },
+  { t: 7.618, word: "and" },
+  { t: 7.92, word: "I" },
+  { t: 8.159, word: "finally" },
+  { t: 8.469, word: "decided" },
+  { t: 8.86, word: "that" },
+  { t: 9.758, word: "you" },
+  { t: 11.585, word: "deserve" },
+  { t: 11.934, word: "to" },
+  { t: 12.178, word: "know" },
+  { t: 12.522, word: "how" },
+  { t: 12.876, word: "I" },
+  { t: 13.237, word: "truly" },
+  { t: 13.737, word: "feel" },
+  { t: 14.186, word: "about" },
+  { t: 14.771, word: "you." },
+];
+
+const birthdaySync = [
+  { t: 0.818, word: "I" },
+  { t: 1.9, word: "know" },
+  { t: 2.13, word: "your" },
+  { t: 2.419, word: "birthday" },
+  { t: 2.734, word: "has" },
+  { t: 3.07, word: "already" },
+  { t: 3.229, word: "passed," },
+  { t: 4.879, word: "but" },
+  { t: 6.044, word: "I" },
+  { t: 6.263, word: "did" },
+  { t: 6.425, word: "not" },
+  { t: 6.704, word: "want" },
+  { t: 7.291, word: "to" },
+  { t: 7.574, word: "let" },
+  { t: 7.819, word: "more" },
+  { t: 8.117, word: "time" },
+  { t: 8.333, word: "go" },
+  { t: 8.445, word: "by" },
+  { t: 9.206, word: "without" },
+  { t: 9.583, word: "doing" },
+  { t: 9.913, word: "something" },
+  { t: 10.28, word: "special" },
+  { t: 10.637, word: "for" },
+  { t: 10.858, word: "you," },
+  { t: 11.643, word: "because" },
+  { t: 12.701, word: "you" },
+  { t: 12.996, word: "deserve" },
+  { t: 13.191, word: "to" },
+  { t: 13.54, word: "be" },
+  { t: 13.798, word: "celebrated" },
+  { t: 14.041, word: "every" },
+  { t: 15.161, word: "single" },
+  { t: 15.495, word: "day." },
+];
+
+const reasonsSync = [
+  { t: 1.749, word: "There" },
+  { t: 2, word: "are" },
+  { t: 2.331, word: "so" },
+  { t: 2.649, word: "many" },
+  { t: 2.761, word: "things" },
+  { t: 3.703, word: "about" },
+  { t: 4.006, word: "you" },
+  { t: 4.331, word: "that" },
+  { t: 4.499, word: "I" },
+  { t: 4.683, word: "adore." },
+  { t: 5.945, word: "Your" },
+  { t: 6.444, word: "beauty" },
+  { t: 6.874, word: "is" },
+  { t: 7.783, word: "the" },
+  { t: 7.99, word: "kind" },
+  { t: 8.263, word: "that" },
+  { t: 8.538, word: "stops" },
+  { t: 8.762, word: "you" },
+  { t: 8.961, word: "mid" },
+  { t: 9.123, word: "thought." },
+  { t: 10.261, word: "The" },
+  { t: 10.472, word: "way" },
+  { t: 10.644, word: "your" },
+  { t: 10.843, word: "skin" },
+  { t: 11.063, word: "glows" },
+  { t: 12.049, word: "so" },
+  { t: 12.298, word: "effortlessly" },
+  { t: 12.755, word: "and" },
+  { t: 14.066, word: "radiantly" },
+  { t: 15.224, word: "is" },
+  { t: 15.44, word: "something" },
+  { t: 15.799, word: "I" },
+  { t: 16.03, word: "genuinely" },
+  { t: 16.254, word: "admire." },
+  { t: 18.058, word: "Your" },
+  { t: 18.242, word: "eyes" },
+  { t: 18.534, word: "speak" },
+  { t: 19.809, word: "volumes" },
+  { t: 20.413, word: "before" },
+  { t: 21.47, word: "you" },
+  { t: 21.73, word: "even" },
+  { t: 21.981, word: "say" },
+  { t: 22.344, word: "a" },
+  { t: 22.609, word: "single" },
+  { t: 22.864, word: "word." },
+  { t: 24.066, word: "Your" },
+  { t: 24.49, word: "smile" },
+  { t: 24.873, word: "has" },
+  { t: 25.491, word: "this" },
+  { t: 25.786, word: "quiet" },
+  { t: 26.093, word: "power" },
+  { t: 26.462, word: "that" },
+  { t: 27.532, word: "makes" },
+  { t: 27.869, word: "everything" },
+  { t: 28.399, word: "around" },
+  { t: 28.859, word: "you" },
+  { t: 29.3, word: "feel" },
+  { t: 29.621, word: "lighter" },
+  { t: 30.004, word: "and" },
+  { t: 30.669, word: "warmer." },
+  { t: 32.314, word: "You" },
+  { t: 32.598, word: "are" },
+  { t: 32.912, word: "one" },
+  { t: 33.121, word: "of" },
+  { t: 33.594, word: "the" },
+  { t: 33.75, word: "most" },
+  { t: 33.864, word: "respectful," },
+  { t: 34.159, word: "genuine," },
+  { t: 35.913, word: "caring" },
+  { t: 36.525, word: "and" },
+  { t: 36.879, word: "loving" },
+  { t: 37.186, word: "people" },
+  { t: 37.578, word: "I" },
+  { t: 38.451, word: "have" },
+  { t: 38.75, word: "ever" },
+  { t: 39.123, word: "met," },
+  { t: 40.1, word: "and" },
+  { t: 40.384, word: "that" },
+  { t: 40.639, word: "is" },
+  { t: 41.175, word: "truly" },
+  { t: 41.939, word: "rare." },
+  { t: 43.074, word: "I" },
+  { t: 43.565, word: "have" },
+  { t: 44.139, word: "only" },
+  { t: 44.578, word: "ever" },
+  { t: 45.171, word: "seen" },
+  { t: 45.6, word: "a" },
+  { t: 46.34, word: "little" },
+  { t: 46.873, word: "of" },
+  { t: 47.234, word: "your" },
+  { t: 47.555, word: "hair," },
+  { t: 49.336, word: "but" },
+  { t: 49.767, word: "even" },
+  { t: 50.333, word: "that" },
+  { t: 51.126, word: "small" },
+  { t: 53.211, word: "glimpse" },
+  { t: 53.957, word: "told" },
+  { t: 54.16, word: "me" },
+  { t: 54.446, word: "that" },
+  { t: 55.249, word: "something" },
+  { t: 55.813, word: "beautiful" },
+  { t: 56.587, word: "hides" },
+  { t: 56.893, word: "there." },
+  { t: 57.755, word: "And" },
+  { t: 59.442, word: "your" },
+  { t: 59.74, word: "company," },
+  { t: 61.228, word: "being" },
+  { t: 61.575, word: "around" },
+  { t: 61.844, word: "you" },
+  { t: 63.095, word: "makes" },
+  { t: 63.313, word: "me" },
+  { t: 63.494, word: "feel" },
+  { t: 63.81, word: "complete," },
+  { t: 65.293, word: "like" },
+  { t: 65.546, word: "the" },
+  { t: 65.746, word: "missing" },
+  { t: 65.942, word: "piece" },
+  { t: 66.128, word: "has" },
+  { t: 67.868, word: "finally" },
+  { t: 68.212, word: "found" },
+  { t: 68.466, word: "its" },
+  { t: 68.756, word: "place." },
+];
+
+const confessionSync = [
+  { t: 1.504, word: "Shayma," },
+  { t: 3.078, word: "I" },
+  { t: 4.126, word: "have" },
+  { t: 4.696, word: "kept" },
+  { t: 5.055, word: "this" },
+  { t: 5.281, word: "to" },
+  { t: 5.931, word: "myself" },
+  { t: 6.339, word: "for" },
+  { t: 7.385, word: "long" },
+  { t: 7.755, word: "enough," },
+  { t: 8.984, word: "and" },
+  { t: 9.183, word: "I" },
+  { t: 9.486, word: "want" },
+  { t: 9.657, word: "you" },
+  { t: 9.919, word: "to" },
+  { t: 10.215, word: "know" },
+  { t: 10.541, word: "from" },
+  { t: 10.743, word: "the" },
+  { t: 11.023, word: "bottom" },
+  { t: 11.357, word: "of" },
+  { t: 11.544, word: "my" },
+  { t: 12.081, word: "heart" },
+  { t: 12.272, word: "that" },
+  { t: 12.379, word: "I" },
+  { t: 12.587, word: "genuinely" },
+  { t: 12.773, word: "like" },
+  { t: 13.154, word: "you," },
+  { t: 14.214, word: "and" },
+  { t: 14.797, word: "I" },
+  { t: 15.106, word: "mean" },
+  { t: 15.338, word: "that" },
+  { t: 15.868, word: "with" },
+  { t: 16.829, word: "everything" },
+  { t: 17.56, word: "in" },
+  { t: 17.792, word: "me." },
+];
+
+const endingSync = [
+  { t: 1.791, word: "After" },
+  { t: 2.152, word: "everything" },
+  { t: 2.421, word: "I" },
+  { t: 2.74, word: "have" },
+  { t: 3.093, word: "shared" },
+  { t: 3.472, word: "with" },
+  { t: 3.689, word: "you" },
+  { t: 3.961, word: "today," },
+  { t: 5.37, word: "there" },
+  { t: 5.704, word: "is" },
+  { t: 6.018, word: "just" },
+  { t: 6.211, word: "one" },
+  { t: 6.398, word: "question" },
+  { t: 7.116, word: "I" },
+  { t: 7.709, word: "want" },
+  { t: 7.988, word: "to" },
+  { t: 8.174, word: "leave" },
+  { t: 8.335, word: "you" },
+  { t: 8.687, word: "with," },
+  { t: 9.113, word: "can" },
+  { t: 10.318, word: "I" },
+  { t: 10.911, word: "be" },
+  { t: 11.379, word: "your" },
+  { t: 11.562, word: "star?" },
+];
+
+// Map each section to its sync data and voice file
+const voiceSyncs = {
+  intro:      { data: introSync,      file: 'audio/voice-intro.aac' },
+  birthday:   { data: birthdaySync,   file: 'audio/voice-birthday.aac' },
+  reasons:    { data: reasonsSync,    file: 'audio/voice-reason.aac' },
+  confession: { data: confessionSync, file: 'audio/voice-confession.aac' },
+  ending:     { data: endingSync,     file: 'audio/voice-ending_mp3.aac' },
+};
+
+// Voice players — pre-loaded
+const voicePlayers = {};
+Object.keys(voiceSyncs).forEach(section => {
+  const v = new Audio(voiceSyncs[section].file);
+  v.volume = 1;
+  voicePlayers[section] = v;
+});
+
+let voiceInterval = null;
+let activeVoiceSection = null;
+
+function stopVoice() {
+  if (voiceInterval) { clearInterval(voiceInterval); voiceInterval = null; }
+  if (activeVoiceSection) {
+    const v = voicePlayers[activeVoiceSection];
+    v.pause();
+    v.currentTime = 0;
+  }
+  activeVoiceSection = null;
+}
+
+function playVoiceSync(sectionId, textElementId) {
+  stopVoice();
+  const sync = voiceSyncs[sectionId];
+  if (!sync) return;
+
+  const el = document.getElementById(textElementId);
+  if (!el) return;
+
+  // Lower background music while voice plays
+  const bgAudio = audioPlayers[sectionId];
+  if (bgAudio) bgAudio.volume = 0.12;
+
+  const voice = voicePlayers[sectionId];
+  voice.currentTime = 0;
+  voice.play().catch(() => {});
+  activeVoiceSection = sectionId;
+
+  let wordIdx = 0;
+  el.textContent = '';
+
+  voiceInterval = setInterval(() => {
+    const currentTime = voice.currentTime;
+
+    // Add all words whose timestamp has passed
+    while (wordIdx < sync.data.length && currentTime >= sync.data[wordIdx].t) {
+      el.textContent += (wordIdx === 0 ? '' : ' ') + sync.data[wordIdx].word;
+      wordIdx++;
+    }
+
+    // When voice ends, restore background music volume
+    if (voice.ended || wordIdx >= sync.data.length) {
+      clearInterval(voiceInterval);
+      voiceInterval = null;
+      if (bgAudio) {
+        const restore = setInterval(() => {
+          if (bgAudio.volume < 0.5) {
+            bgAudio.volume = Math.min(bgAudio.volume + 0.02, 0.5);
+          } else {
+            clearInterval(restore);
+          }
+        }, 80);
+      }
+    }
+  }, 50);
+}
+
+
+
+// =============================================
 // 7. SECTION AUDIO
 // =============================================
 const currentAudio = {
@@ -410,23 +768,69 @@ function startEndingSequence() {
 
   document.getElementById('choice-yes').classList.remove('checked');
   document.getElementById('choice-think').classList.remove('checked');
+  document.getElementById('action-buttons').style.display = 'none';
+
+  hideAllSchedulers();
 
   setTimeout(typeEndingText, 600);
 }
 
+function burstHearts() {
+  const emojis = ['♥', '💛', '🌸', '⭐', '✨'];
+  const cx = window.innerWidth / 2;
+  const cy = window.innerHeight / 2;
+
+  for (let i = 0; i < 24; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('burst-heart');
+    heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+    // Random direction for each heart
+    const angle   = Math.random() * 360;
+    const distance = Math.random() * 180 + 60;
+    const dx = Math.cos(angle * Math.PI / 180) * distance;
+    const dy = Math.sin(angle * Math.PI / 180) * distance;
+
+    heart.style.left = cx + 'px';
+    heart.style.top  = cy + 'px';
+    heart.style.setProperty('--dx', dx + 'px');
+    heart.style.setProperty('--dy', dy + 'px');
+    heart.style.animationDelay = (Math.random() * 0.3) + 's';
+    heart.style.fontSize = (Math.random() * 16 + 14) + 'px';
+
+    document.body.appendChild(heart);
+
+    // Remove from DOM after animation finishes
+    setTimeout(() => heart.remove(), 2000);
+  }
+}
+
 yesCheck.addEventListener('change', () => {
   if (yesCheck.checked) {
+    burstHearts();
     // Uncheck the other
     thinkCheck.checked = false;
     document.getElementById('choice-think').classList.remove('checked');
     document.getElementById('choice-yes').classList.add('checked');
 
+    
+
     // Hide convince message, show heart
     convinceText.style.display = 'none';
     endingWrapper.style.display = 'flex';
+
+    // Show action buttons after heart appears
+    setTimeout(() => {
+    document.getElementById('action-buttons').style.display = 'flex';
+    }, 800);
   } else {
     document.getElementById('choice-yes').classList.remove('checked');
     endingWrapper.style.display = 'none';
+
+    document.getElementById('action-buttons').style.display = 'none';
+
+  hideAllSchedulers();
+
   }
 });
 
@@ -436,6 +840,11 @@ thinkCheck.addEventListener('change', () => {
     yesCheck.checked = false;
     document.getElementById('choice-yes').classList.remove('checked');
     document.getElementById('choice-think').classList.add('checked');
+
+    document.getElementById('action-buttons').style.display = 'none';
+
+  hideAllSchedulers();
+
 
     // Hide heart, show convince message
     endingWrapper.style.display = 'none';
@@ -448,6 +857,97 @@ thinkCheck.addEventListener('change', () => {
 });
 
 
+
+// =============================================
+// 9. ACTION BUTTONS & SCHEDULERS
+// =============================================
+
+const waNumber = '254757038863';
+
+function buildMeetMessage(date, time, location, personal) {
+  return `Hey Cleophas, I said yes! I think we should meet at ${location} on ${date} at ${time}. ${personal} -- Shayma`;
+}
+
+function buildVirtualMessage(personal) {
+  return `Hey Cleophas, I said yes! ${personal} -- Shayma`;
+}
+
+function openWhatsApp(message) {
+  const encoded = encodeURIComponent(message);
+  window.open(`https://wa.me/${waNumber}?text=${encoded}`, '_blank');
+}
+
+function hideAllSchedulers() {
+  document.getElementById('meet-scheduler').style.display = 'none';
+  document.getElementById('virtual-scheduler').style.display = 'none';
+  document.getElementById('both-scheduler').style.display = 'none';
+  document.querySelectorAll('.action-btn').forEach(b => b.classList.remove('selected'));
+}
+
+function showSentConfirmation() {
+  const el = document.getElementById('sent-confirmation');
+  el.classList.add('visible');
+  setTimeout(() => el.classList.remove('visible'), 4000);
+}
+
+// Button 1 — Meet
+document.getElementById('btn-meet').addEventListener('click', () => {
+  hideAllSchedulers();
+  document.getElementById('btn-meet').classList.add('selected');
+  document.getElementById('meet-scheduler').style.display = 'block';
+});
+
+// Button 2 — Virtual
+document.getElementById('btn-virtual').addEventListener('click', () => {
+  hideAllSchedulers();
+  document.getElementById('btn-virtual').classList.add('selected');
+  document.getElementById('virtual-scheduler').style.display = 'block';
+});
+
+// Button 3 — Both
+document.getElementById('btn-both').addEventListener('click', () => {
+  hideAllSchedulers();
+  document.getElementById('btn-both').classList.add('selected');
+  document.getElementById('both-scheduler').style.display = 'block';
+});
+
+// Send — Meet
+document.getElementById('meet-send-btn').addEventListener('click', () => {
+  const date     = document.getElementById('meet-date').value || 'a date TBD';
+  const time     = document.getElementById('meet-time').value || 'a time TBD';
+  const location = document.getElementById('meet-location').value || 'a place TBD';
+  const personal = document.getElementById('meet-message').value || '';
+  openWhatsApp(buildMeetMessage(date, time, location, personal));
+  showSentConfirmation(); 
+});
+
+// Send — Virtual
+document.getElementById('virtual-send-btn').addEventListener('click', () => {
+  const personal = document.getElementById('virtual-message').value || '';
+  openWhatsApp(buildVirtualMessage(personal));
+  showSentConfirmation(); 
+});
+
+// Send — Both virtual first
+document.getElementById('both-virtual-send-btn').addEventListener('click', () => {
+  const personal = document.getElementById('both-virtual-message').value || '';
+  openWhatsApp(buildVirtualMessage(personal));
+  // Reveal physical scheduler after virtual message sent
+  document.getElementById('both-meet-section').style.display = 'block';
+  showSentConfirmation(); 
+});
+
+// Send — Both physical
+document.getElementById('both-meet-send-btn').addEventListener('click', () => {
+  const date     = document.getElementById('both-meet-date').value || 'a date TBD';
+  const time     = document.getElementById('both-meet-time').value || 'a time TBD';
+  const location = document.getElementById('both-meet-location').value || 'a place TBD';
+  const personal = document.getElementById('both-meet-message').value || '';
+  openWhatsApp(buildMeetMessage(date, time, location, personal));
+  showSentConfirmation(); 
+});
+
+
 // =============================================
 // 6. SLIDE NAVIGATION  (always last)
 // =============================================
@@ -457,29 +957,132 @@ const prevBtn     = document.getElementById('prev-btn');
 const nextBtn     = document.getElementById('next-btn');
 let currentSlide  = 0;
 
+// Word ranges for each reason card in reasonsSync
+const reasonWordRanges = [
+  { start: 0,   end: 9  },  // Day 1 — Your Beauty (There are...adore.)
+  { start: 10,  end: 19 },  // Day 2 — Your Skin (Your beauty...thought.)
+  { start: 20,  end: 33 },  // Day 3 — Your Eyes (The way...admire.)
+  { start: 34,  end: 44 },  // Day 4 — Your Smile (Your eyes...word.)
+  { start: 45,  end: 60 },  // Day 5 — Your Heart (Your smile...rare.)
+  { start: 61,  end: 96 },  // Day 6 — Your Hair (I have...there.)
+  { start: 97,  end: 120 }, // Day 7 — Your Company (And your...place.)
+];
+
+function playReasonVoice() {
+  const cardIndex = Math.min(cardsToShow - 1, reasons.length - 1);
+  const range = reasonWordRanges[cardIndex];
+  if (!range) return;
+
+  const sync = voiceSyncs['reasons'];
+  const el = document.getElementById('reasons-voice-text');
+  if (!el) return;
+
+  const slice = sync.data.slice(range.start, range.end + 1);
+  const startTime = slice[0].t;
+
+  const bgAudio = audioPlayers['reasons'];
+  if (bgAudio) bgAudio.volume = 0.12;
+
+  const voice = voicePlayers['reasons'];
+  voice.currentTime = startTime;
+  voice.play().catch(() => {});
+  activeVoiceSection = 'reasons';
+
+  el.textContent = '';
+  let wordIdx = 0;
+
+  voiceInterval = setInterval(() => {
+    const currentTime = voice.currentTime;
+
+    while (wordIdx < slice.length && currentTime >= slice[wordIdx].t) {
+      el.textContent += (wordIdx === 0 ? '' : ' ') + slice[wordIdx].word;
+      wordIdx++;
+    }
+
+    if (wordIdx >= slice.length) {
+      clearInterval(voiceInterval);
+      voiceInterval = null;
+      voice.pause();
+      if (bgAudio) {
+        const restore = setInterval(() => {
+          if (bgAudio.volume < 0.5) {
+            bgAudio.volume = Math.min(bgAudio.volume + 0.02, 0.5);
+          } else clearInterval(restore);
+        }, 80);
+      }
+    }
+  }, 50);
+}
+
 function goToSlide(n) {
   slides[currentSlide].classList.remove('active');
+
+  // Stop voice when leaving a slide
+  stopVoice();
+
   currentSlide = n;
   slides[currentSlide].classList.add('active');
 
   prevBtn.disabled = currentSlide === 0;
   nextBtn.disabled = currentSlide === slides.length - 1;
 
-  // Confession: reset and retype each time she arrives
-  if (slides[currentSlide].id === 'confession') {
+  const id = slides[currentSlide].id;
+
+  // Update page title per section
+const pageTitles = {
+  intro:      'For Shayma ✨',
+  birthday:   'For Shayma ✨ — Happy Birthday 🎂',
+  reasons:    'For Shayma ✨ — Why You Mean So Much',
+  confession: 'For Shayma ✨ — I Have Something to Tell You',
+  ending:     'For Shayma ✨ — Can I Be Your Star? ⭐',
+};
+document.title = pageTitles[id] || 'For Shayma ✨';
+  // Hide nav hint once she navigates for the first time
+  const navHint = document.getElementById('nav-hint');
+  if (navHint) navHint.style.display = 'none';
+
+  if (id === 'intro') {
+    document.getElementById('her-subtitle').textContent = '';
+    setTimeout(() => playVoiceSync('intro', 'her-subtitle'), 600);
+  }
+
+  if (id === 'birthday') {
+    document.querySelector('#birthday p').textContent = '';
+    setTimeout(() => playVoiceSync('birthday', 'birthday-text'), 600);
+  }
+
+  if (id === 'reasons') {
+    setTimeout(() => playReasonVoice(), 600);
+  }
+
+  if (id === 'confession') {
     charIndex = 0;
     confessionText.textContent = '';
-    setTimeout(typeWriter, 400); // small delay feels more intentional
+    setTimeout(() => playVoiceSync('confession', 'confession-text'), 400);
   }
 
-  // Ending: restart shooting stars each time she arrives
-  if (slides[currentSlide].id === 'ending') {
-    startShootingStars();
-    startEndingSequence();
-  }
+  if (id === 'ending') {
+  startShootingStars();
+  startEndingSequence();
+  setTimeout(() => {
+    const voice = voicePlayers['ending'];
+    const bgAudio = audioPlayers['ending'];
+    if (bgAudio) bgAudio.volume = 0.12;
+    voice.currentTime = 0;
+    voice.play().catch(() => {});
+    voice.addEventListener('ended', () => {
+      if (bgAudio) {
+        const restore = setInterval(() => {
+          if (bgAudio.volume < 0.5) {
+            bgAudio.volume = Math.min(bgAudio.volume + 0.02, 0.5);
+          } else clearInterval(restore);
+        }, 80);
+      }
+    }, { once: true });
+  }, 600);
+}
 
-
-  playSectionSound(slides[currentSlide].id);
+  playSectionSound(id);
 }
 
 prevBtn.addEventListener('click', () => {
@@ -496,7 +1099,7 @@ prevBtn.disabled = true;
 
 // Play intro sound on first interaction (browser requires this)
 document.addEventListener('click', () => {
-  if (!currentAudio) {
+  if (!currentSection) {
     playSectionSound('intro');
   }
 }, { once: true });

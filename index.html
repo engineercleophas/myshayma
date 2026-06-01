@@ -8,6 +8,17 @@
   </head>
   <body>
 
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+      <div id="loading-content">
+        <p id="loading-name">Cleophas</p>
+        <p id="loading-sub">made something for you...</p>
+        <div id="loading-bar-container">
+          <div id="loading-bar"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Night elements -->
     <div id="stars-container"></div>
     <div id="moon"></div>
@@ -28,17 +39,23 @@
       <div id="her-photo-container">
         <img id="her-photo" src="Shayma.jpg" alt="Shayma">
       </div>
+
+      <div id="nav-hint">
+        <span id="nav-hint-arrow">→</span>
+        <span id="nav-hint-text">tap to continue</span>
+      </div>
     </section>
 
     <!-- Section 2: Birthday -->
     <section id="birthday" class="slide">
       <h2>March 19th &hearts;</h2>
-      <p>I know your birthday has passed, but some feelings are too special to rush...</p>
+      <p id="birthday-text">I know your birthday has passed, but some feelings are too special to rush...</p>
     </section>
 
     <!-- Section 3: Reasons -->
     <section id="reasons" class="slide">
       <h2>Why you mean so much to me &starf;</h2>
+      <p id="reasons-voice-text" style="color: #d4b8ff; font-style:italic; max-width: 600px; line-height:1.8; margin-bottom:20px; font-size:clamp(0.8rem, 2.5vw, 1rem);"></p>
       <div id="cards-container"></div>
     </section>
 
@@ -112,6 +129,91 @@
 
       <p id="convince-text" style="display:none;"></p>
 
+      <!-- Three action buttons -->
+      <div id="action-buttons" style="display:none;">
+        <button class="action-btn" id="btn-meet">📅 Let's Meet</button>
+        <button class="action-btn" id="btn-virtual">💬 Send a Message</button>
+        <button class="action-btn" id="btn-both">💛 Both</button>
+      </div>
+
+      <!-- Physical meeting scheduler -->
+      <div id="meet-scheduler" style="display:none;">
+        <div class="scheduler-card">
+          <h3 class="scheduler-title">📅 Plan Our Meeting</h3>
+          <div class="scheduler-fields">
+            <label>Date
+              <input type="date" id="meet-date" class="scheduler-input"/>
+            </label>
+            <label>Time
+              <input type="time" id="meet-time" class="scheduler-input"/>
+            </label>
+            <label>Location
+              <input type="text" id="meet-location" class="scheduler-input" placeholder="Where should we meet?"/>
+            </label>
+            <label>Your message to me
+              <textarea id="meet-message" class="scheduler-input scheduler-textarea" placeholder="Add something sweet..."></textarea>
+            </label>
+          </div>
+          <button class="wa-send-btn" id="meet-send-btn">
+            <img src="Cleophas.jpg" alt="Send to Cleophas" class="wa-btn-img"/>
+            <span>Notify Cleophas 💌</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Virtual message -->
+      <div id="virtual-scheduler" style="display:none;">
+        <div class="scheduler-card">
+          <h3 class="scheduler-title">💬 Send Me a Message</h3>
+          <div class="scheduler-fields">
+            <label>Your message to me
+              <textarea id="virtual-message" class="scheduler-input scheduler-textarea" placeholder="Tell me what's on your mind..."></textarea>
+            </label>
+          </div>
+          <button class="wa-send-btn" id="virtual-send-btn">
+            <img src="Cleophas.jpg" alt="Send to Cleophas" class="wa-btn-img"/>
+            <span>Notify Cleophas 💌</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Both flow -->
+      <div id="both-scheduler" style="display:none;">
+        <div class="scheduler-card">
+          <h3 class="scheduler-title">💬 First, Send Me a Message</h3>
+          <div class="scheduler-fields">
+            <label>Your message to me
+              <textarea id="both-virtual-message" class="scheduler-input scheduler-textarea" placeholder="Tell me what's on your mind..."></textarea>
+            </label>
+          </div>
+          <button class="wa-send-btn" id="both-virtual-send-btn">
+            <img src="Cleophas.jpg" alt="Send to Cleophas" class="wa-btn-img"/>
+            <span>Send Message First 💌</span>
+          </button>
+          <div id="both-meet-section" style="display:none; margin-top:20px;">
+            <h3 class="scheduler-title">📅 Now, Let's Plan Our Meeting</h3>
+            <div class="scheduler-fields">
+              <label>Date
+                <input type="date" id="both-meet-date" class="scheduler-input"/>
+              </label>
+              <label>Time
+                <input type="time" id="both-meet-time" class="scheduler-input"/>
+              </label>
+              <label>Location
+                <input type="text" id="both-meet-location" class="scheduler-input" placeholder="Where should we meet?"/>
+              </label>
+              <label>Anything to add?
+                <textarea id="both-meet-message" class="scheduler-input scheduler-textarea" placeholder="Add something sweet..."></textarea>
+              </label>
+            </div>
+            <button class="wa-send-btn" id="both-meet-send-btn">
+              <img src="Cleophas.jpg" alt="Send to Cleophas" class="wa-btn-img"/>
+              <span>Notify Cleophas 💌</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div id="ending-heart-wrapper" style="display:none;">
         <div id="ending-heart-frame">
           <svg viewBox="0 -10 200 200" xmlns="http://www.w3.org/2000/svg" id="ending-heart-svg">
@@ -149,5 +251,7 @@
     </section>
 
     <script src="script.js"></script>
+
+    <div id="sent-confirmation">Sent! I'll be waiting 🌟 -- Cleophas</div>
   </body>
 </html>

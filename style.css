@@ -710,3 +710,383 @@ body.daytime .choice-box {
   align-items: center;
   animation: fadeIn 1.5s ease forwards;
 }
+
+
+/*----- ACTION BUTTONS -----*/
+#action-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  animation: fadeIn 0.8s ease forwards;
+  position: relative;
+  z-index: 2;
+}
+
+.action-btn {
+  padding: 12px 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 158, 205, 0.5);
+  background: rgba(255, 158, 205, 0.12);
+  color: #ff9ecd;
+  font-family: Georgia, serif;
+  font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+  font-style: italic;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.action-btn:hover {
+  background: rgba(255, 158, 205, 0.28);
+  transform: scale(1.05);
+}
+
+.action-btn.selected {
+  background: rgba(255, 158, 205, 0.35);
+  border-color: #ff9ecd;
+}
+
+body.daytime .action-btn {
+  color: #c2185b;
+  border-color: rgba(194, 24, 91, 0.5);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/*----- SCHEDULER CARDS -----*/
+.scheduler-card {
+  background: rgba(255, 158, 205, 0.08);
+  border: 1px solid rgba(255, 158, 205, 0.25);
+  border-radius: 16px;
+  padding: 14px 18px;
+  max-width: 380px;
+  width: 90vw;
+  margin-top: 10px;
+  animation: fadeIn 0.8s ease forwards;
+  position: relative;
+  z-index: 2;
+  max-height: 10vh;
+  overflow-y: auto;
+}
+
+.scheduler-title {
+  color: #ff9ecd;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.scheduler-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.scheduler-fields label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #d4b8ff;
+  font-size: 0.8rem;
+  font-style: italic;
+  text-align: left;
+}
+
+.scheduler-input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(168, 216, 255, 0.3);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #ffffff;
+  font-family: Georgia, serif;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border 0.2s ease;
+  width: 100%;
+}
+
+.scheduler-input:focus {
+  border-color: rgba(255, 158, 205, 0.7);
+}
+
+.scheduler-textarea {
+  min-height: 50px;
+  resize: none;
+}
+
+body.daytime .scheduler-input {
+  background: rgba(255, 255, 255, 0.5);
+  color: #1a237e;
+  border-color: rgba(194, 24, 91, 0.3);
+}
+
+body.daytime .scheduler-fields label { color: #4a148c; }
+body.daytime .scheduler-title { color: #c2185b; }
+
+/*----- WHATSAPP SEND BUTTON -----*/
+.wa-send-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 158, 205, 0.4);
+  background: rgba(255, 158, 205, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #ff9ecd;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.wa-send-btn:hover {
+  background: rgba(255, 158, 205, 0.25);
+  transform: scale(1.02);
+}
+
+.wa-btn-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0.6;
+  border: 2px solid rgba(255, 158, 205, 0.5);
+}
+
+body.daytime .wa-send-btn {
+  color: #c2185b;
+  border-color: rgba(194, 24, 91, 0.4);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+
+/*----- LOADING SCREEN -----*/
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0a1a;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 1s ease;
+}
+
+#loading-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#loading-content {
+  text-align: center;
+}
+
+#loading-name {
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  color: #ff9ecd;
+  text-shadow: 0 0 20px #ff9ecd, 0 0 40px #ff69b4;
+  letter-spacing: 8px;
+  font-style: italic;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards 0.5s;
+  margin-bottom: 12px;
+}
+
+#loading-sub {
+  font-size: clamp(0.9rem, 3vw, 1.2rem);
+  color: #a8d8ff;
+  font-style: italic;
+  letter-spacing: 3px;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards 1.5s;
+  margin-bottom: 30px;
+}
+
+#loading-bar-container {
+  width: clamp(180px, 40vw, 300px);
+  height: 3px;
+  background: rgba(255, 158, 205, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards 2s;
+  margin: 0 auto;
+}
+
+#loading-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff9ecd, #a8d8ff, #ff69b4);
+  border-radius: 4px;
+  transition: width 2.5s ease;
+}/*----- LOADING SCREEN -----*/
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a0a1a;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: opacity 2s ease;
+}
+
+#loading-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#loading-content {
+  text-align: center;
+}
+
+#loading-name {
+  font-size: clamp(2rem, 8vw, 3.5rem);
+  color: #ff9ecd;
+  text-shadow: 0 0 20px #ff9ecd, 0 0 40px #ff69b4;
+  letter-spacing: 8px;
+  font-style: italic;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards 0.5s;
+  margin-bottom: 12px;
+}
+
+#loading-sub {
+  font-size: clamp(0.9rem, 3vw, 1.2rem);
+  color: #a8d8ff;
+  font-style: italic;
+  letter-spacing: 3px;
+  opacity: 0;
+  animation: fadeIn 1.5s ease forwards 1.5s;
+  margin-bottom: 30px;
+}
+
+#loading-bar-container {
+  width: clamp(180px, 40vw, 300px);
+  height: 3px;
+  background: rgba(255, 158, 205, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards 2s;
+  margin: 0 auto;
+}
+
+#loading-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ff9ecd, #a8d8ff, #ff69b4);
+  border-radius: 4px;
+  transition: width 2.5s ease;
+}
+
+
+/*----- NAV HINT -----*/
+#nav-hint {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards 6s;
+  z-index: 3;
+}
+
+#nav-hint-arrow {
+  font-size: 1.4rem;
+  color: #ff9ecd;
+  animation: hintPulse 1.5s infinite ease-in-out;
+  display: inline-block;
+}
+
+#nav-hint-text {
+  font-size: 0.8rem;
+  color: #a8d8ff;
+  font-style: italic;
+  letter-spacing: 2px;
+}
+
+body.daytime #nav-hint-arrow { color: #c2185b; }
+body.daytime #nav-hint-text  { color: #1565c0; }
+
+@keyframes hintPulse {
+  0%   { transform: translateX(0px);  opacity: 0.5; }
+  50%  { transform: translateX(6px);  opacity: 1; }
+  100% { transform: translateX(0px);  opacity: 0.5; }
+}
+
+
+/*----- HEARTS BURST -----*/
+.burst-heart {
+  position: fixed;
+  pointer-events: none;
+  z-index: 998;
+  transform-origin: center;
+  animation: burstFly 1.2s cubic-bezier(0.2, 0.8, 0.4, 1) forwards;
+}
+
+@keyframes burstFly {
+  0%   { 
+    transform: translate(0, 0) scale(0); 
+    opacity: 1; 
+  }
+  30%  { 
+    transform: translate(calc(var(--dx) * 0.5), calc(var(--dy) * 0.5)) scale(1.2); 
+    opacity: 1; 
+  }
+  100% { 
+    transform: translate(var(--dx), var(--dy)) scale(0.3); 
+    opacity: 0; 
+  }
+}
+
+
+/*----- SENT CONFIRMATION -----*/
+#sent-confirmation {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 158, 205, 0.15);
+  border: 1px solid rgba(255, 158, 205, 0.5);
+  border-radius: 20px;
+  padding: 12px 24px;
+  color: #ff9ecd;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: clamp(0.8rem, 3vw, 1rem);
+  letter-spacing: 1px;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  white-space: nowrap;
+}
+
+#sent-confirmation.visible {
+  opacity: 1;
+}
+
+body.daytime #sent-confirmation {
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(194, 24, 91, 0.4);
+  color: #c2185b;
+}
