@@ -146,8 +146,7 @@ const reasons = [
 
 const cardsContainer = document.getElementById('cards-container');
 
-// ⚠️ Change this to the date you send her the link
-const startDate   = new Date('2026-06-01');
+const startDate   = new Date('2026-06-05');
 const today       = new Date();
 const msPerDay    = 1000 * 60 * 60 * 24;
 const daysPassed  = Math.floor((today - startDate) / msPerDay);
