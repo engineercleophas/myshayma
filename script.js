@@ -55,7 +55,7 @@ function createSmallStars() {
   starsContainer.appendChild(small);
 }
 
-for (let i = 0; i < 40;  i++) createStars();
+for (let i = 0; i < 35;  i++) createStars();
 for (let i = 0; i < 70; i++) createSmallStars();
 
 
@@ -209,7 +209,7 @@ resizeCanvas();
 
 let meteorList  = [];  // renamed from 'stars' to avoid conflict with star elements
 let starCount   = 0;
-const maxStars  = 5;
+const maxStars  = 2;
 let shootingAnimActive = false;
 
 function shootingStar() {
