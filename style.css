@@ -15,6 +15,7 @@ body {
   font-family: Georgia, 'Times New Roman', Times, serif;
   min-height: 100vh;
   overflow: hidden;
+  overscroll-behavior-y: auto;
   transition: background 1s ease;
 }
 
